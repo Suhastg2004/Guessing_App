@@ -8,7 +8,7 @@
  * 4. Stop when game ends
  *
  * @author Suhas T G
- * @version 2.0
+ * @version 4.0
  */
 
 import java.util.Scanner;
@@ -25,7 +25,7 @@ public class GuessingApp{
         int attempts = 0;
 
         //Count the hints
-        int hintCount = 0;
+        int hintsUsed = 0;
 
         //Get the target number
         int target = config.getTargetNumber();
@@ -39,16 +39,18 @@ public class GuessingApp{
             String result = GuessValidator.validateGuess(guess, target);
             System.out.println(result);
 
-            //Stop the loop if the guess is correc
-            if ("CORRECT".equals(result)){
+            //Give hint if the guess is incorrect and you have some hints left 
+            if (!"CORRECT".equals(result) && hintsUsed < config.getMaxHints()) {
+                hintsUsed++;
+                System.out.println("Hint: " + HintService.generateHint(config.getTargetNumber(), hintsUsed));
+            }
+            
+            System.out.println(result);
+
+            //Stop the loop if the guess is correct 
+            if ("CORRECT".equals(result)) {
                 System.out.println("You guessed in " + attempts + " attempts");
                 break;
-            }
-            //If the guess is incorrect -> Display Hints (only if hintCount < max hints)
-            else if (hintCount < config.getMaxHints()){
-                hintCount++;
-                String hint = HintService.generateHint(target, hintCount);
-                System.out.println("Hint : " + hint);
             }
         }
     }
