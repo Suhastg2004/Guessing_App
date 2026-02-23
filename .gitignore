@@ -1,0 +1,2 @@
+#Avoid pushing .class file to the repo
+*.class
