@@ -12,7 +12,7 @@
  * - Random number generation
  */
 
-//Used to generate a Random number
+//Used to generate Random number
 import java.util.Random;
 
 class GameConfig {
