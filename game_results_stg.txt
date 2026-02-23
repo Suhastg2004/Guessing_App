@@ -2,3 +2,5 @@ Player: Suhas T G Attempts: 5 Result: LOSE
 Player: Suhas T G Attempts: 4 Result: WIN
 Player: Suhas T G Attempts: 1 Result: WIN
 Player: Suhas T G Attempts: 7 Result: LOSE
+Player: STG Attempts: 3 Result: WIN
+Player: STG Attempts: 6 Result: WIN
