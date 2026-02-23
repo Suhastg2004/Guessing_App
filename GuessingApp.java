@@ -1,12 +1,6 @@
 /**
  * MAIN CLASS
- *
- * Coordinates the game flow:
- * 1. Initialize game
- * 2. Accept user guesses
- * 3. Validate guesses
- * 4. Stop when game ends
- *
+ * Error handling and validation
  * @author Suhas T G
  * @version 4.0
  */
@@ -14,7 +8,7 @@
 import java.util.Scanner;
 
 public class GuessingApp{
-    public static void main(String[] args){
+    public static void main(String[] args) throws InvalidInputException{
 
         System.out.println("Welcome to the Guessing App");
         GameConfig config = new GameConfig();
@@ -27,17 +21,13 @@ public class GuessingApp{
         //Count the hints
         int hintsUsed = 0;
 
-        //Get the target number
-        int target = config.getTargetNumber();
-
         //Game loops unit the user reaches maximum attempts
         while (attempts < config.getMaxAttempts()){
             System.out.println("Enter your guess:");
-            int guess = scanner.nextInt();
+            int guess = ValidationService.validateInput(scanner.nextLine());
             attempts++;
 
-            String result = GuessValidator.validateGuess(guess, target);
-            System.out.println(result);
+            String result = GuessValidator.validateGuess(guess, config.getTargetNumber());
 
             //Give hint if the guess is incorrect and you have some hints left 
             if (!"CORRECT".equals(result) && hintsUsed < config.getMaxHints()) {
