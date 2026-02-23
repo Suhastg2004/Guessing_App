@@ -59,7 +59,7 @@ public class GuessingApp{
                 break;
             }
         }
-        //Final game result is stored after the loop completes
+        //Final game result is stored after the loop completes.
         StorageService.saveResult(player, attempts, win);
     }
 }
